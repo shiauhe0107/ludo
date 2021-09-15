@@ -79,8 +79,14 @@ window.__require = function e(t, n, r) {
     var whetherChessPostheSame = [];
     exports.whetherChessPostheSame = whetherChessPostheSame;
     var whetherChessPostheSameidx = 0;
-    var whetherChessPostheSamePath = [];
-    var whetherChessPostheSamePathidx = 0;
+    var whetherChessPostheSamePath1 = [];
+    var whetherChessPostheSamePath2 = [];
+    var whetherChessPostheSamePath3 = [];
+    var whetherChessPostheSamePath4 = [];
+    var whetherChessPostheSamePathidx1 = 0;
+    var whetherChessPostheSamePathidx2 = 0;
+    var whetherChessPostheSamePathidx3 = 0;
+    var whetherChessPostheSamePathidx4 = 0;
     var ClientTest_1 = require("./ClientTest");
     var ClientTest_2 = require("./ClientTest");
     var ClientTest_3 = require("./ClientTest");
@@ -95,8 +101,6 @@ window.__require = function e(t, n, r) {
       __extends(Boards, _super);
       function Boards() {
         var _this = null !== _super && _super.apply(this, arguments) || this;
-        _this[0] = null;
-        _this[1] = null;
         _this.l1 = null;
         _this.l2 = null;
         _this.players = null;
@@ -191,8 +195,14 @@ window.__require = function e(t, n, r) {
       Boards.prototype.newBoard = function() {
         whetherChessPostheSameidx = 0;
         whetherChessPostheSame.splice(0, whetherChessPostheSame.length);
-        whetherChessPostheSamePathidx = 0;
-        whetherChessPostheSamePath.splice(0, whetherChessPostheSame.length);
+        whetherChessPostheSamePath1.splice(0, whetherChessPostheSamePath1.length);
+        whetherChessPostheSamePath2.splice(0, whetherChessPostheSamePath2.length);
+        whetherChessPostheSamePath3.splice(0, whetherChessPostheSamePath3.length);
+        whetherChessPostheSamePath4.splice(0, whetherChessPostheSamePath4.length);
+        whetherChessPostheSamePathidx1 = 0;
+        whetherChessPostheSamePathidx2 = 0;
+        whetherChessPostheSamePathidx3 = 0;
+        whetherChessPostheSamePathidx4 = 0;
         for (var i = 0; i <= 51; i++) board[i].count_ = 0;
         for (var i = 52; i < 58; i++) {
           path1[i].count_ = 0;
@@ -286,13 +296,14 @@ window.__require = function e(t, n, r) {
             count_ > 0 && index < 51 ? execute(index + 1, count_ - 1) : index >= 51 && count_ > 0 && execute(index - 51, count_ - 1);
           }).start();
         };
+        console.log("someone being eaten", chess, chess2);
         execute(ClientTest_2.moveChess[2], (idx + 51 - ClientTest_2.moveChess[2] + 1) % 52);
         chessplace[4 * i + j] = -1;
         board[ClientTest_2.moveChess[2]].count_ -= 1;
       };
       Boards.prototype.move = function(player, playernum, idx, chess) {
         if (ClientTest_1.Gate[0] && idx > 51 && 0 === player) {
-          ClientTest_2.moveChess[2] > 51 ? this.BeforeMovePath(path1, idx, chess) : this.BeforeMove(player, idx, chess);
+          ClientTest_2.moveChess[2] > 51 ? this.BeforeMovePath(path1, idx, chess, whetherChessPostheSamePath1, whetherChessPostheSamePathidx1) : this.BeforeMove(player, idx, chess);
           if (51 > ClientTest_2.moveChess[2]) {
             var execute_1 = function(index, count_) {
               cc.tween(chess).to(.5, {
@@ -316,8 +327,9 @@ window.__require = function e(t, n, r) {
           };
           execute_2(52, (idx - ClientTest_2.moveChess[2]) % 13 - count_Path);
           path1[idx].count_ += 1;
+          console.log(whetherChessPostheSamePath1, whetherChessPostheSamePathidx1);
         } else if (ClientTest_1.Gate[1] && idx > 51 && 1 === player) {
-          ClientTest_2.moveChess[2] > 51 ? this.BeforeMovePath(path2, idx, chess) : this.BeforeMove(player, idx, chess);
+          ClientTest_2.moveChess[2] > 51 ? this.BeforeMovePath(path2, idx, chess, whetherChessPostheSamePath2, whetherChessPostheSamePathidx2) : this.BeforeMove(player, idx, chess);
           if (12 > ClientTest_2.moveChess[2]) {
             var execute_3 = function(index, count_) {
               cc.tween(chess).to(.5, {
@@ -341,8 +353,9 @@ window.__require = function e(t, n, r) {
           };
           execute_4(52, (idx - ClientTest_2.moveChess[2]) % 13 - count_Path);
           path2[idx].count_ += 1;
+          console.log(whetherChessPostheSamePath2, whetherChessPostheSamePathidx2);
         } else if (ClientTest_1.Gate[2] && idx > 51 && 2 === player) {
-          ClientTest_2.moveChess[2] > 51 ? this.BeforeMovePath(path3, idx, chess) : this.BeforeMove(player, idx, chess);
+          ClientTest_2.moveChess[2] > 51 ? this.BeforeMovePath(path3, idx, chess, whetherChessPostheSamePath3, whetherChessPostheSamePathidx3) : this.BeforeMove(player, idx, chess);
           if (25 > ClientTest_2.moveChess[2]) {
             var execute_5 = function(index, count_) {
               cc.tween(chess).to(.5, {
@@ -366,8 +379,9 @@ window.__require = function e(t, n, r) {
           };
           execute_6(52, (idx - ClientTest_2.moveChess[2]) % 13 - count_Path);
           path3[idx].count_ += 1;
+          console.log(whetherChessPostheSamePath3, whetherChessPostheSamePathidx3);
         } else if (ClientTest_1.Gate[3] && idx > 51 && 3 === player) {
-          ClientTest_2.moveChess[2] > 51 ? this.BeforeMovePath(path4, idx, chess) : this.BeforeMove(player, idx, chess);
+          ClientTest_2.moveChess[2] > 51 ? this.BeforeMovePath(path4, idx, chess, whetherChessPostheSamePath4, whetherChessPostheSamePathidx4) : this.BeforeMove(player, idx, chess);
           if (38 > ClientTest_2.moveChess[2]) {
             var execute_7 = function(index, count_) {
               cc.tween(chess).to(.5, {
@@ -391,6 +405,7 @@ window.__require = function e(t, n, r) {
           };
           execute_8(52, (idx - ClientTest_2.moveChess[2]) % 13 - count_Path);
           path4[idx].count_ += 1;
+          console.log(whetherChessPostheSamePath4, whetherChessPostheSamePathidx4);
         } else if (-1 == idx) cc.tween(chess).to(1, {
           scale: 1,
           position: cc.v3(originpos[4 * player + playernum].x, originpos[4 * player + playernum].y, 0)
@@ -415,7 +430,7 @@ window.__require = function e(t, n, r) {
       };
       Boards.prototype.changeMoveStatus = function(player, playernum, idx, chess, chess2) {
         if (-1 == idx) return;
-        if (ClientTest_1.Gate[0] && idx > 51 && 0 === player) this.changeMoveStatusPath(path1, player, idx, 51, chess, chess2); else if (ClientTest_1.Gate[1] && idx > 51 && 1 === player) this.changeMoveStatusPath(path2, player, idx, 12, chess, chess2); else if (ClientTest_1.Gate[2] && idx > 51 && 2 === player) this.changeMoveStatusPath(path3, player, idx, 25, chess, chess2); else if (ClientTest_1.Gate[3] && idx > 51 && 3 === player) this.changeMoveStatusPath(path4, player, idx, 38, chess, chess2); else if (idx <= 51) {
+        if (ClientTest_1.Gate[0] && idx > 51 && 0 === player) this.changeMoveStatusPath(path1, player, idx, 51, chess, chess2, whetherChessPostheSamePath1, whetherChessPostheSamePathidx1); else if (ClientTest_1.Gate[1] && idx > 51 && 1 === player) this.changeMoveStatusPath(path2, player, idx, 12, chess, chess2, whetherChessPostheSamePath2, whetherChessPostheSamePathidx2); else if (ClientTest_1.Gate[2] && idx > 51 && 2 === player) this.changeMoveStatusPath(path3, player, idx, 25, chess, chess2, whetherChessPostheSamePath3, whetherChessPostheSamePathidx3); else if (ClientTest_1.Gate[3] && idx > 51 && 3 === player) this.changeMoveStatusPath(path4, player, idx, 38, chess, chess2, whetherChessPostheSamePath4, whetherChessPostheSamePathidx4); else if (idx <= 51) {
           this.BeforeMove(player, idx, chess);
           if (board[idx].count_ < 2) {
             if (0 == ClientTest_3.dir) {
@@ -509,6 +524,8 @@ window.__require = function e(t, n, r) {
                   }
                   whetherChessPostheSame[i].push(chess);
                   board[idx].count_ += 1;
+                  console.log(whetherChessPostheSame, whetherChessPostheSameidx);
+                  return "break";
                 }
               } else if (3 === whetherChessPostheSame[i].length && 3 === board[idx].count_ && (whetherChessPostheSame[i][0].name == chess2.name || whetherChessPostheSame[i][1].name == chess2.name || whetherChessPostheSame[i][2].name == chess2.name)) {
                 if (-1 != ClientTest_2.moveChess[2]) {
@@ -517,45 +534,81 @@ window.__require = function e(t, n, r) {
                       scale: 1,
                       position: cc.v3(board[index].x, board[index].y, 0)
                     }).call(function() {
-                      count_ > 0 && index < 51 ? execute_12(index + 1, count_ - 1) : index >= 51 && count_ > 0 ? execute_12(index - 51, count_ - 1) : cc.tween(chess).to(1, {
-                        scale: .25,
-                        position: cc.v3(board[idx].x + 6, board[idx].y - 6, 0)
-                      }, cc.easeBackIn()).start();
+                      if (count_ > 0 && index < 51) execute_12(index + 1, count_ - 1); else if (index >= 51 && count_ > 0) execute_12(index - 51, count_ - 1); else {
+                        cc.tween(chess).to(1, {
+                          scale: .25,
+                          position: cc.v3(board[idx].x - 6, board[idx].y + 6, 0)
+                        }, cc.easeBackIn()).start();
+                        cc.tween(cc.find("Canvas/board/player" + Math.trunc(parseInt(whetherChessPostheSame[i][0].name) / 4 + 1).toString() + "/" + whetherChessPostheSame[i][0].name)).to(1, {
+                          scale: .25,
+                          position: cc.v3(board[idx].x - 6, board[idx].y - 6, 0)
+                        }, cc.easeBackIn()).start();
+                        cc.tween(cc.find("Canvas/board/player" + Math.trunc(parseInt(whetherChessPostheSame[i][1].name) / 4 + 1).toString() + "/" + whetherChessPostheSame[i][1].name)).to(1, {
+                          scale: .25,
+                          position: cc.v3(board[idx].x + 6, board[idx].y + 6, 0)
+                        }, cc.easeBackIn()).start();
+                        cc.tween(cc.find("Canvas/board/player" + Math.trunc(parseInt(whetherChessPostheSame[i][2].name) / 4 + 1).toString() + "/" + whetherChessPostheSame[i][2].name)).to(1, {
+                          scale: .25,
+                          position: cc.v3(board[idx].x + 6, board[idx].y - 6, 0)
+                        }, cc.easeBackIn()).start();
+                      }
                     }).start();
                   };
                   execute_12(ClientTest_2.moveChess[2], (idx + 51 - ClientTest_2.moveChess[2] + 1) % 52);
-                } else cc.tween(chess).to(1, {
-                  scale: .25,
-                  position: cc.v3(board[idx].x + 6, board[idx].y - 6, 0)
-                }, cc.easeBackIn()).start();
+                } else {
+                  cc.tween(chess).to(1, {
+                    scale: .25,
+                    position: cc.v3(board[idx].x - 6, board[idx].y + 6, 0)
+                  }, cc.easeBackIn()).start();
+                  cc.tween(cc.find("Canvas/board/player" + Math.trunc(parseInt(whetherChessPostheSame[i][0].name) / 4 + 1).toString() + "/" + whetherChessPostheSame[i][0].name)).to(1, {
+                    scale: .25,
+                    position: cc.v3(board[idx].x - 6, board[idx].y - 6, 0)
+                  }, cc.easeBackIn()).start();
+                  cc.tween(cc.find("Canvas/board/player" + Math.trunc(parseInt(whetherChessPostheSame[i][1].name) / 4 + 1).toString() + "/" + whetherChessPostheSame[i][1].name)).to(1, {
+                    scale: .25,
+                    position: cc.v3(board[idx].x + 6, board[idx].y + 6, 0)
+                  }, cc.easeBackIn()).start();
+                  cc.tween(cc.find("Canvas/board/player" + Math.trunc(parseInt(whetherChessPostheSame[i][2].name) / 4 + 1).toString() + "/" + whetherChessPostheSame[i][2].name)).to(1, {
+                    scale: .25,
+                    position: cc.v3(board[idx].x + 6, board[idx].y - 6, 0)
+                  }, cc.easeBackIn()).start();
+                }
                 whetherChessPostheSame[i].push(chess);
                 board[idx].count_ += 1;
+                console.log(whetherChessPostheSame, whetherChessPostheSameidx);
+                return "break";
               }
             };
-            for (var i = 0; i < whetherChessPostheSameidx; ++i) _loop_1(i);
+            for (var i = 0; i < whetherChessPostheSameidx; ++i) {
+              var state_1 = _loop_1(i);
+              if ("break" === state_1) break;
+            }
           }
         }
       };
-      Boards.prototype.BeforeMovePath = function(player, idx, chess) {
+      Boards.prototype.BeforeMovePath = function(player, idx, chess, whetherChessPostheSamePath, whetherChessPostheSamePathidx) {
         for (var i = 0; i < whetherChessPostheSamePathidx; ++i) {
           if (-1 === idx) break;
           if (ClientTest_2.moveChess[2] > 0 && player[ClientTest_2.moveChess[2]].count_ > 1 && whetherChessPostheSamePath[i] && whetherChessPostheSamePath) {
-            if (2 === whetherChessPostheSamePath[i].length && 2 === player[ClientTest_2.moveChess[2]].count_) if (chess.name == whetherChessPostheSamePath[i][0].name) {
-              cc.tween(cc.find("Canvas/board/player" + Math.trunc(parseInt(whetherChessPostheSamePath[i][1].name) / 4 + 1).toString() + "/" + whetherChessPostheSamePath[i][1].name)).to(1, {
-                scale: 1,
-                position: cc.v3(player[ClientTest_2.moveChess[2]].x, player[ClientTest_2.moveChess[2]].y, 0)
-              }).start();
-              whetherChessPostheSamePath.splice(i, 1);
-              whetherChessPostheSamePathidx--;
-              player[ClientTest_2.moveChess[2]].count_ -= 1;
-            } else if (chess.name == whetherChessPostheSamePath[i][1].name) {
-              cc.tween(cc.find("Canvas/board/player" + Math.trunc(parseInt(whetherChessPostheSamePath[i][0].name) / 4 + 1).toString() + "/" + whetherChessPostheSamePath[i][0].name)).to(1, {
-                scale: 1,
-                position: cc.v3(player[ClientTest_2.moveChess[2]].x, player[ClientTest_2.moveChess[2]].y, 0)
-              }).start();
-              whetherChessPostheSamePath.splice(i, 1);
-              whetherChessPostheSamePathidx--;
-              player[ClientTest_2.moveChess[2]].count_ -= 1;
+            if (2 === whetherChessPostheSamePath[i].length && 2 === player[ClientTest_2.moveChess[2]].count_) {
+              if (chess.name == whetherChessPostheSamePath[i][0].name) {
+                cc.tween(cc.find("Canvas/board/player" + Math.trunc(parseInt(whetherChessPostheSamePath[i][1].name) / 4 + 1).toString() + "/" + whetherChessPostheSamePath[i][1].name)).to(1, {
+                  scale: 1,
+                  position: cc.v3(player[ClientTest_2.moveChess[2]].x, player[ClientTest_2.moveChess[2]].y, 0)
+                }).start();
+                whetherChessPostheSamePath.splice(i, 1);
+                whetherChessPostheSamePathidx--;
+                player[ClientTest_2.moveChess[2]].count_ -= 1;
+              } else if (chess.name == whetherChessPostheSamePath[i][1].name) {
+                cc.tween(cc.find("Canvas/board/player" + Math.trunc(parseInt(whetherChessPostheSamePath[i][0].name) / 4 + 1).toString() + "/" + whetherChessPostheSamePath[i][0].name)).to(1, {
+                  scale: 1,
+                  position: cc.v3(player[ClientTest_2.moveChess[2]].x, player[ClientTest_2.moveChess[2]].y, 0)
+                }).start();
+                whetherChessPostheSamePath.splice(i, 1);
+                whetherChessPostheSamePathidx--;
+                player[ClientTest_2.moveChess[2]].count_ -= 1;
+              }
+              console.log(whetherChessPostheSamePath, whetherChessPostheSamePathidx);
             }
           } else if (3 === whetherChessPostheSamePath[i].length && 3 === player[ClientTest_2.moveChess[2]].count_) {
             if (chess.name == whetherChessPostheSamePath[i][0].name) {
@@ -569,6 +622,7 @@ window.__require = function e(t, n, r) {
               }).start();
               whetherChessPostheSamePath[i].splice(0, 1);
               player[ClientTest_2.moveChess[2]].count_ -= 1;
+              console.log(whetherChessPostheSamePath, whetherChessPostheSamePathidx);
             } else if (chess.name == whetherChessPostheSamePath[i][1].name) {
               cc.tween(cc.find("Canvas/board/player" + Math.trunc(parseInt(whetherChessPostheSamePath[i][0].name) / 4 + 1).toString() + "/" + whetherChessPostheSamePath[i][0].name)).to(1, {
                 scale: .5,
@@ -580,7 +634,8 @@ window.__require = function e(t, n, r) {
               }).start();
               whetherChessPostheSamePath[i].splice(1, 1);
               player[ClientTest_2.moveChess[2]].count_ -= 1;
-            } else if (chess.name == whetherChessPostheSame[i][2].name) {
+              console.log(whetherChessPostheSamePath, whetherChessPostheSamePathidx);
+            } else if (chess.name == whetherChessPostheSamePath[i][2].name) {
               cc.tween(cc.find("Canvas/board/player" + Math.trunc(parseInt(whetherChessPostheSamePath[i][0].name) / 4 + 1).toString() + "/" + whetherChessPostheSamePath[i][0].name)).to(1, {
                 scale: .5,
                 position: cc.v3(player[ClientTest_2.moveChess[2]].x - 8, player[ClientTest_2.moveChess[2]].y - 8, 0)
@@ -591,24 +646,28 @@ window.__require = function e(t, n, r) {
               }).start();
               whetherChessPostheSamePath[i].splice(2, 1);
               player[ClientTest_2.moveChess[2]].count_ -= 1;
+              console.log(whetherChessPostheSamePath, whetherChessPostheSamePathidx);
             }
-          } else if (4 === whetherChessPostheSamePath[i].length && 4 === player[ClientTest_2.moveChess[2]].count_) if (chess.name == whetherChessPostheSamePath[i][0].name) {
-            whetherChessPostheSamePath[i].splice(0, 1);
-            player[ClientTest_2.moveChess[2]].count_ -= 1;
-          } else if (chess.name == whetherChessPostheSamePath[i][1].name) {
-            whetherChessPostheSamePath[i].splice(1, 1);
-            player[ClientTest_2.moveChess[2]].count_ -= 1;
-          } else if (chess.name == whetherChessPostheSamePath[i][2].name) {
-            whetherChessPostheSamePath[i].splice(2, 1);
-            player[ClientTest_2.moveChess[2]].count_ -= 1;
-          } else if (chess.name == whetherChessPostheSamePath[i][3].name) {
-            whetherChessPostheSamePath[i].splice(3, 1);
-            player[ClientTest_2.moveChess[2]].count_ -= 1;
+          } else if (4 === whetherChessPostheSamePath[i].length && 4 === player[ClientTest_2.moveChess[2]].count_) {
+            if (chess.name == whetherChessPostheSamePath[i][0].name) {
+              whetherChessPostheSamePath[i].splice(0, 1);
+              player[ClientTest_2.moveChess[2]].count_ -= 1;
+            } else if (chess.name == whetherChessPostheSamePath[i][1].name) {
+              whetherChessPostheSamePath[i].splice(1, 1);
+              player[ClientTest_2.moveChess[2]].count_ -= 1;
+            } else if (chess.name == whetherChessPostheSamePath[i][2].name) {
+              whetherChessPostheSamePath[i].splice(2, 1);
+              player[ClientTest_2.moveChess[2]].count_ -= 1;
+            } else if (chess.name == whetherChessPostheSamePath[i][3].name) {
+              whetherChessPostheSamePath[i].splice(3, 1);
+              player[ClientTest_2.moveChess[2]].count_ -= 1;
+            }
+            console.log(whetherChessPostheSamePath, whetherChessPostheSamePathidx);
           }
         }
       };
-      Boards.prototype.changeMoveStatusPath = function(player, playernum, idx, boardIdx, chess, chess2) {
-        ClientTest_2.moveChess[2] <= 51 ? this.BeforeMove(playernum, idx, chess) : this.BeforeMovePath(player, idx, chess);
+      Boards.prototype.changeMoveStatusPath = function(player, playernum, idx, boardIdx, chess, chess2, whetherChessPostheSamePath, whetherChessPostheSamePathidx) {
+        ClientTest_2.moveChess[2] <= 51 ? this.BeforeMove(playernum, idx, chess) : this.BeforeMovePath(player, idx, chess, whetherChessPostheSamePath, whetherChessPostheSamePathidx);
         if (player[idx].count_ < 2 && idx > 51) {
           if (boardIdx > ClientTest_2.moveChess[2]) {
             var execute_13 = function(index, count_) {
@@ -646,6 +705,7 @@ window.__require = function e(t, n, r) {
           whetherChessPostheSamePath[whetherChessPostheSamePathidx][0] = chess;
           whetherChessPostheSamePath[whetherChessPostheSamePathidx][1] = chess2;
           whetherChessPostheSamePathidx++;
+          console.log(whetherChessPostheSamePath, whetherChessPostheSamePathidx);
         } else if (player[idx].count_ >= 2 && idx > 51) {
           var _loop_2 = function(i) {
             if (whetherChessPostheSamePath[i] && whetherChessPostheSamePath) if (2 === whetherChessPostheSamePath[i].length && 2 === player[idx].count_) {
@@ -687,6 +747,7 @@ window.__require = function e(t, n, r) {
                 execute_16(52, (idx - ClientTest_2.moveChess[2]) % 13 - count_Path);
                 player[idx].count_ += 1;
                 whetherChessPostheSamePath[i].push(chess);
+                console.log(whetherChessPostheSamePath, whetherChessPostheSamePathidx);
               }
             } else if (3 === whetherChessPostheSamePath[i].length && 3 === player[idx].count_ && (whetherChessPostheSame[i][0].name == chess2.name || whetherChessPostheSame[i][1].name == chess2.name || whetherChessPostheSame[i][2].name == chess2.name)) {
               if (boardIdx > ClientTest_2.moveChess[2]) {
@@ -707,23 +768,36 @@ window.__require = function e(t, n, r) {
                   scale: 1,
                   position: cc.v3(player[index].x, player[index].y, 0)
                 }).call(function() {
-                  count_ > 0 ? execute_18(index + 1, count_ - 1) : cc.tween(chess).to(1, {
-                    scale: .25,
-                    position: cc.v3(player[idx].x + 6, player[idx].y - 6, 0)
-                  }, cc.easeBackIn()).start();
+                  if (count_ > 0) execute_18(index + 1, count_ - 1); else {
+                    cc.tween(chess).to(1, {
+                      scale: .25,
+                      position: cc.v3(player[idx].x - 6, player[idx].y + 6, 0)
+                    }, cc.easeBackIn()).start();
+                    cc.tween(cc.find("Canvas/board/player" + Math.trunc(parseInt(whetherChessPostheSamePath[i][0].name) / 4 + 1).toString() + "/" + whetherChessPostheSamePath[i][0].name)).to(1, {
+                      scale: .25,
+                      position: cc.v3(player[idx].x - 6, player[idx].y - 6, 0)
+                    }, cc.easeBackIn()).start();
+                    cc.tween(cc.find("Canvas/board/player" + Math.trunc(parseInt(whetherChessPostheSamePath[i][1].name) / 4 + 1).toString() + "/" + whetherChessPostheSamePath[i][1].name)).to(1, {
+                      scale: .25,
+                      position: cc.v3(player[idx].x + 6, player[idx].y + 6, 0)
+                    }, cc.easeBackIn()).start();
+                    cc.tween(cc.find("Canvas/board/player" + Math.trunc(parseInt(whetherChessPostheSamePath[i][2].name) / 4 + 1).toString() + "/" + whetherChessPostheSamePath[i][2].name)).to(1, {
+                      scale: .25,
+                      position: cc.v3(player[idx].x + 6, player[idx].y - 6, 0)
+                    }, cc.easeBackIn()).start();
+                  }
                 }).start();
               };
               execute_18(52, (idx - ClientTest_2.moveChess[2]) % 13 - count_Path);
               whetherChessPostheSamePath[i].push(chess);
               player[idx].count_ += 1;
+              console.log(whetherChessPostheSamePath, whetherChessPostheSamePathidx);
             }
           };
           var count_Path, count_Path;
           for (var i = 0; i < whetherChessPostheSamePathidx; ++i) _loop_2(i);
         }
       };
-      __decorate([ property(cc.Button) ], Boards.prototype, 0, void 0);
-      __decorate([ property(cc.Node) ], Boards.prototype, 1, void 0);
       __decorate([ property(cc.Label) ], Boards.prototype, "l1", void 0);
       __decorate([ property(cc.Label) ], Boards.prototype, "l2", void 0);
       __decorate([ property(cc.Node) ], Boards.prototype, "players", void 0);
@@ -778,6 +852,7 @@ window.__require = function e(t, n, r) {
     var gamemode = 0;
     exports.gamemode = gamemode;
     var dicedisplay = false;
+    var Aiplay = [ false, false, false, false ];
     var Board_2 = require("./Board");
     var Board_3 = require("./Board");
     var moveChess = [ -1, -1, -1 ];
@@ -912,14 +987,27 @@ window.__require = function e(t, n, r) {
         return false;
       };
       ClientTest.prototype.updateboard = function(data) {
+        var _this = this;
+        Turn = parseInt(data.Turn);
+        action = false == data.Movable ? "Throw" : "Move";
         for (var i = 0; i < 4; i++) Gate[i] = data.Gate[i];
         0 == dir ? this.initalboard(data) : 2 == dir && this.moveupdateboard(data);
-        Turn = parseInt(data.Turn);
-        0 == Turn ? this.turncolor.color = cc.color(51, 200, 19) : 1 == Turn ? this.turncolor.color = cc.color(250, 255, 0) : 2 == Turn ? this.turncolor.color = cc.color(46, 184, 255) : 3 == Turn && (this.turncolor.color = cc.color(255, 0, 0));
+        var wait = 1;
+        wait = true == data.Movable ? 1 : .6 * data.DicePoint;
+        this.schedule(function() {
+          0 == Turn ? _this.turncolor.color = cc.color(51, 200, 19) : 1 == Turn ? _this.turncolor.color = cc.color(250, 255, 0) : 2 == Turn ? _this.turncolor.color = cc.color(46, 184, 255) : 3 == Turn && (_this.turncolor.color = cc.color(255, 0, 0));
+          _this.Status.string = "Action:" + action;
+        }, wait + .2, 0, 0);
         Dicepoint = data.DicePoint;
-        action = false == data.Movable ? "Throw" : "Move";
         this.Dice.getComponent(cc.Button).enabled = "Throw" == action;
-        this.Status.string = "Action:" + action;
+        if (Aiplay[Turn]) if (true == data.Movable) {
+          wait = 1;
+          this.schedule(this.Nexttosever, wait + .2, 0, 0);
+        } else {
+          wait = .6 * data.DicePoint;
+          6 == data.DicePoint && -1 == moveChess[2] && (wait = 1.5);
+          this.schedule(this.Nexttosever, wait + .5, 0, 0);
+        }
       };
       ClientTest.prototype.initalboard = function(data) {
         this.canvas.newBoard();
@@ -942,6 +1030,9 @@ window.__require = function e(t, n, r) {
           }
           sameplace ? sameplace = false : this.canvas.move(i, j, parseInt(data.Pieces[i][j]), cc.find("player" + (i + 1).toString() + "/" + (4 * i + j).toString(), this.players));
         }
+        action = false == data.Movable ? "Throw" : "Move";
+        0 == Turn ? this.turncolor.color = cc.color(51, 200, 19) : 1 == Turn ? this.turncolor.color = cc.color(250, 255, 0) : 2 == Turn ? this.turncolor.color = cc.color(46, 184, 255) : 3 == Turn && (this.turncolor.color = cc.color(255, 0, 0));
+        this.Status.string = "Action:" + action;
       };
       ClientTest.prototype.moveupdateboard = function(data) {
         var tmp = 4 * moveChess[0] + moveChess[1];
@@ -964,7 +1055,12 @@ window.__require = function e(t, n, r) {
             this.canvas.changeMoveStatus(moveChess[0], moveChess[1], Board_3.chessplace[tmp], cc.find("player" + (moveChess[0] + 1).toString() + "/" + tmp.toString(), this.players), cc.find("player" + Math.trunc(k / 4 + 1).toString() + "/" + k.toString(), this.players));
             break;
           }
+          if (Board_3.chessplace[tmp] > 51) {
+            this.canvas.move(moveChess[0], moveChess[1], Board_3.chessplace[tmp], cc.find("player" + (moveChess[0] + 1).toString() + "/" + tmp.toString(), this.players));
+            break;
+          }
           this.canvas.goBackHome(moveChess[0], Board_3.chessplace[tmp], cc.find("player" + (moveChess[0] + 1).toString() + "/" + tmp.toString(), this.players), cc.find("player" + Math.trunc(k / 4 + 1).toString() + "/" + k.toString(), this.players), Math.trunc(k / 4), Math.trunc(k % 4));
+          break;
         }
         sameplace ? sameplace = false : this.canvas.move(moveChess[0], moveChess[1], Board_3.chessplace[tmp], cc.find("player" + (moveChess[0] + 1).toString() + "/" + tmp.toString(), this.players));
       };
@@ -1003,6 +1099,10 @@ window.__require = function e(t, n, r) {
       };
       ClientTest.prototype.display = function(node, Y) {
         Y ? node.setPosition(0, 0) : node.setPosition(0, 1e3);
+      };
+      ClientTest.prototype.switchaiplay = function(event, num) {
+        Aiplay[parseInt(num) - 1] = !Aiplay[parseInt(num) - 1];
+        Aiplay[parseInt(num) - 1] ? cc.find("player" + num + "/auto/Background", this.players).color = cc.color(0, 255, 0) : cc.find("player" + num + "/auto/Background", this.players).color = cc.color(255, 0, 0);
       };
       __decorate([ property(cc.Node) ], ClientTest.prototype, "players", void 0);
       __decorate([ property(Board_1.default) ], ClientTest.prototype, "canvas", void 0);
